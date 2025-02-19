@@ -1,31 +1,14 @@
-body{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+*{
+    margin : 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.header{
+
+.container{
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    width : 400px;
-    justify-content: space-around;
-    margin-bottom: 20px;
-}
-
-.footer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width : 500px;
-    align-items: center ;
-    margin-top : 20px;
-}
-
-.board{
-    width : 500px;
+    flex-wrap : wrap;
     height : 500px;
-    display : grid;
-    border : 1px solid black;
+    width : 500px;
+    
 }

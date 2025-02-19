@@ -1,19 +1,65 @@
-document.addEventListener("DOMContentLoaded", function(){
-    createBoard(32)
+const container = document.querySelector(".container"); // Sélectionne l'élément HTML
+const containerRect = container.getBoundingClientRect(); // Récupère ses dimensions
+const containerHeight = containerRect.height;
+const containerWidth = containerRect.width;
+const sizeButton = document.querySelector(".button");
+const initialTiles = 16;
+
+
+sizeButton.addEventListener("click", () => {
+    createBoard()
+
 })
+function board() {
 
-function createBoard(size){
-    let board = document.querySelector('.board');
+    for (let i = 0; i < initialTiles * initialTiles; i++) {
+        let tiles = document.createElement("div"); // Corrigé: "divs" → "div"
+        tiles.style.border = "solid black 1px";
+        tiles.style.height = (containerHeight / initialTiles) + "px";
+        tiles.style.width = (containerWidth / initialTiles) + "px";
 
-    board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
-    board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+        
+        container.appendChild(tiles); // Ajouter la tuile au conteneur
 
-    let numDivs = size * size;
+        tiles.addEventListener("mouseover", () => {tiles.style.backgroundColor = randomColorTiles()})
 
-    for(let i = 0; i < numDivs; i++){
-        let div = document.createElement("div");
-        div.style.backgroundColor = "yellow";
-        board.insertAdjacentElement("beforeend", div)
+        
+
+    }
+
+    
+    
+}
+
+function randomColorTiles(){
+
+    const character = "0123456789ABCDEF"
+    let color = "#"
+
+    for (let i = 0; i < 6; i++){
+        randomChoiceCharacter = Math.floor(Math.random()*16);
+        color += character[randomChoiceCharacter
+        ]
+    }
+    return color
+
+}
+
+function createBoard(){
+    container.innerHTML = "";
+    let numberTiles = parseInt(prompt("Please choose a number between 1 and 100"));
+
+    for (let i = 0; i < numberTiles * numberTiles; i++) {
+        let tiles = document.createElement("div"); // Corrigé: "divs" → "div"
+        tiles.style.border = "solid black 1px";
+        tiles.style.height = (containerHeight / numberTiles) + "px";
+        tiles.style.width = (containerWidth / numberTiles) + "px";
+
+        
+        container.appendChild(tiles);
+
+        tiles.addEventListener("mouseover", () => {tiles.style.backgroundColor = randomColorTiles()})
     }
 }
 
+board(); // Exécuter la fonction pour créer la grille
